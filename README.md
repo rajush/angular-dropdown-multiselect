@@ -15,7 +15,7 @@ AngularJS, jQuery, Bootstrap
 <h3>Set through attribute:</h3>
 
 <h4>dropdown-options</h4>
-<p>Provide data to be displayed as dropdown list items through <code>dropdown-options="options"</code> attribute.</p>. It can accept the object in a format of:
+<p>Provide data to be displayed as dropdown list items through <code>dropdown-options="options"</code> attribute. It can accept the object in a format of:</p>
 <pre>$scope.options = [ {
         'Id': 1,
         'Name': 'Batman'
