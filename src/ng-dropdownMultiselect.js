@@ -33,7 +33,6 @@ angular.module( 'dropdown-multiselect', [] )
                 options: '=dropdownOptions', // object for repeater
                 notifyParent: '&dropdownSelected' // notifier
             },
-            // templateUrl: 'dropdownMultiselect/dropdownMultiselect.html',
             controller: function ( $scope ) {
                 var model = [],
                     badgeVisibility = true, // default badge visibility
