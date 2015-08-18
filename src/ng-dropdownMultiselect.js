@@ -50,14 +50,6 @@ angular.module( 'dropdown-multiselect', [] )
 
                 $scope.model = model;
 
-                console.log( 'dropdownConfig', $scope.config );
-                console.info( 'dropdownTrackby', key );
-                console.info( 'dropdownDisable', $scope.disableDropdown );
-                console.info( 'dropdownType', $scope.dropdownType );
-                console.info( 'model', $scope.model );
-                console.info( 'dropdownOptions', $scope.dropdownOptions );
-
-
                 try {
 
                     //check if config is defined or not
@@ -85,7 +77,6 @@ angular.module( 'dropdown-multiselect', [] )
                             badgeVisibility = ( angular.equals( true, $scope.config.displayBadge ) ) ? badgeVisibility = true : badgeVisibility = false;
 
                             $scope.isBadgeVisible = badgeVisibility;
-                            console.log( badgeVisibility );
                         }
 
                         // if 'trackBy' property exists, set the main key to track the dropdown list
@@ -95,7 +86,6 @@ angular.module( 'dropdown-multiselect', [] )
 
                             // binding with view (used for check icon)
                             $scope.trackByKey = key;
-                            console.log( 'trackBy', key );
 
                         } else {
                             //run auto assign condition
@@ -119,7 +109,6 @@ angular.module( 'dropdown-multiselect', [] )
                             //check if an object in option array has a property named 'Id' or 'id'.
                             //here, doing a check only on first index assuming that the objects are set with correct property
                             key = $scope.options[ 0 ].hasOwnProperty( 'Id' ) ? 'Id' : $scope.options[ 0 ].hasOwnProperty( 'id' ) ? 'id' : false;
-                            console.log( 'trackBy', key );
 
                             // set trackByKey to newly auto assigned key for binding with view (used for check icon)
                             $scope.trackByKey = key;
@@ -143,7 +132,6 @@ angular.module( 'dropdown-multiselect', [] )
 
                         // reset the model if the Chain was changed
                         if ( newVal ) {
-                            console.log( 'New options array detected' );
                             model = [];
                             $scope.model = model;
                         }
@@ -179,10 +167,9 @@ angular.module( 'dropdown-multiselect', [] )
                                 }
 
                                 if ( !found ) {
-                                    // console.log( 'push', id );
                                     obj[ key ] = id;
                                     obj.ChainId = chainId;
-                                    // model.push( obj );
+
                                     model.push( options[ i ] );
                                 }
 
@@ -211,15 +198,12 @@ angular.module( 'dropdown-multiselect', [] )
                             chainId = this.option.ChainId,
                             obj = {};
 
-                        console.log( 'id', id );
                         var duplicate = isDuplicate( id, model );
-
-                        // console.log( duplicate );
 
                         if ( !duplicate ) {
                             obj[ key ] = id;
                             obj.ChainId = chainId;
-                            // model.push( obj );
+
                             model.push( this.option );
                         }
 
@@ -250,13 +234,9 @@ angular.module( 'dropdown-multiselect', [] )
                     for ( var i = 0; i < array.length; i++ ) {
                         var current = array[ i ][ key ];
 
-                        console.log( id, current );
-
-
                         // remove if already exists
                         if ( id === current ) {
                             var indexOfId = findIndexByKeyValue( array, key, id );
-                            console.log( 'indexOf', id, 'is', indexOfId );
                             array.splice( indexOfId, 1 );
                             return true;
                         }
