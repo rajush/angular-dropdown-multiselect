@@ -1,0 +1,21 @@
+.dropdown {
+    cursor: pointer;
+}
+.not-allowed {
+    cursor: not-allowed;
+}
+.dropdown .badge {
+    background-color: #777;
+    margin-right: 2px;
+}
+.dropdown .dropdown-menu, .dropdown button {
+    width: 100%;
+}
+.dropdownMultiselect {
+    max-height: 350px;
+    overflow-y: auto;
+}
+#dropdownMenu > .caret {
+    margin-top: 8px;
+    margin-right: -6px;
+}
