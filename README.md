@@ -1,15 +1,15 @@
 # ng-dropdown-multiselect
-Angular JS directive for dropdown with multi-select feature. 
+Angular JS directive for dropdown with multi-select feature.
 
 #Dependencies
 AngularJS, jQuery, Bootstrap
 
 #Features
 
-<p>Use as an <code>element</code> 
-  <code>&ltdropdown-multiselect&gt&lt/dropdown-multiselect&gt</code> 
+<p>Use as an <code>element</code>
+  <code>&ltdropdown-multiselect&gt&lt/dropdown-multiselect&gt</code>
   or as an <code>attribute</code>
-  <code>&ltdiv dropdown-multiselect&gt&lt/div&gt</code> 
+  <code>&ltdiv dropdown-multiselect&gt&lt/div&gt</code>
 </p>
 
 <h3>Set through attribute:</h3>
@@ -38,5 +38,4 @@ AngularJS, jQuery, Bootstrap
 
 #TO DO
 - More explanations and examples.
-
-    
+- Make jQuery independent.
