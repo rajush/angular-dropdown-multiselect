@@ -80,12 +80,12 @@ Configure the options from the controller to set <code>dropdown-config</code>.
     displayBadge
 </pre>
 
-<p><code>options<code>: Data to be displayed in dropdown list. This should be an array of objects.</p>
-<p><code>trackBy<code>: Any property name from the option object that should be used for tracking the selected item.</p>
-<p><code>displayBy<code>: An array that takes two values which will be used as data to be displayed in dropdown list, in a respective order. If it is not set, then it will automagically set the first two prooperty names as the values to be displayed.</p>
-<p><code>divider<code>: A custom divider sign setter <code>-, : , =, # ,......</code> between the dropdown list columns. Default is <code>-</code>.</p>
-<p><code>icon<code>: A custom icon setter for the selected items. Works with Font-Awesome too. Default is Bootstrap's glyphicons checkmark.</p>
-<p><code>displayBadge<code>: Badge on the dropdown button that displays the total number of selected items from the dropdown list. Default visibility is true, but could be set to false.</p>
+<p><code>options</code>: Data to be displayed in dropdown list. This should be an array of objects.</p>
+<p><code>trackBy</code>: Any property name from the option object that should be used for tracking the selected item.</p>
+<p><code>displayBy</code>: An array that takes two values which will be used as data to be displayed in dropdown list, in a respective order. If it is not set, then it will automagically set the first two prooperty names as the values to be displayed.</p>
+<p><code>divider</code>: A custom divider sign setter <code>-, : , =, # ,......</code> between the dropdown list columns. Default is <code>-</code>.</p>
+<p><code>icon</code>: A custom icon setter for the selected items. Works with Font-Awesome too. Default is Bootstrap's glyphicons checkmark.</p>
+<p><code>displayBadge</code>: Badge on the dropdown button that displays the total number of selected items from the dropdown list. Default visibility is true, but could be set to false.</p>
 
 <pre>
 In the controller:
