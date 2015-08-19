@@ -72,9 +72,9 @@ The <code>model</code> attribute gives the accessibility to the selected data fr
 Configure the options from the controller to set <code>dropdown-config</code>.
 <p>Available <code>config</code> options:
 <pre>
-    options,    // data to be displayed in dropdown
-    trackBy,    // property name that should be used for tracking the selected item
-    displayBy,  // an array that takes two values which will be used
+    options,    
+    trackBy,    
+    displayBy,  
     divider,
     icon,
     displayBadge
