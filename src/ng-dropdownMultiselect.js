@@ -63,6 +63,15 @@ angular.module( 'dropdown-multiselect', [] )
                         if ( $scope.config.hasOwnProperty( 'displayBy' ) ) {
                             $scope.leftKey = $scope.config.displayBy[ 0 ];
                             $scope.rightKey = $scope.config.displayBy[ 1 ];
+                        } else {
+                            // grab the first two property and set it automatically as leftKey and rightKey
+                            var optionsProperties = [];
+                            for ( var prop in $scope.options[ 0 ] ) {
+                                optionsProperties.push( prop );
+                            }
+
+                            $scope.leftKey = optionsProperties[ 0 ];
+                            $scope.rightKey = optionsProperties[ 1 ];
                         }
 
                         if ( $scope.config.hasOwnProperty( 'divider' ) ) {
