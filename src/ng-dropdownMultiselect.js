@@ -14,13 +14,20 @@ angular.module( 'dropdown-multiselect', [] )
                 '</div>' +
                 '</button>' +
                 '<ul class="dropdown-menu dropdownMultiselect" aria-labelledby="dropdownMenu">' +
-                '<li><a ng-click="selectAll()"><i class="glyphicon glyphicon-ok"></i> Select All</a></li>' +
-                '<li><a ng-click="unSelectAll()"><i class="glyphicon glyphicon-remove"></i> Unselect All</a></li>' +
-                '<li role="separator" class="divider"></li>' +
+                '<li>' +
+                '<div>' +
+                '<ul class="dropdown-static">' +
+                '<li><a ng-click="selectAll()"><i class="fa fa-check"></i> Select All</a></li>' +
+                '<li><a ng-click="unSelectAll()"><i class="fa fa-times-circle"></i> Unselect All</a></li>' +
+                '</ul>' +
+                '</div>' +
+                '<ul class="dropdown-scrollable" ng-class="{\'dropdown-height\': defaultHeight}">' +
                 '<li ng-repeat="option in options">' +
                 '<a ng-click="setSelectedItem()">' +
                 '{{option[leftKey]}} {{divider}} {{option[rightKey]}} <span class="pull-right" ng-class="isChecked(option[trackByKey], dropdownType)"></span>' +
                 '</a>' +
+                '</li>' +
+                '</ul>' +
                 '</li>' +
                 '</ul>' +
                 '</div>',
@@ -139,7 +146,7 @@ angular.module( 'dropdown-multiselect', [] )
                             $scope.disabled = false;
                         }
 
-                        // reset the model if the Chain was changed
+                        // reset the model if the options is changed
                         if ( newVal ) {
                             model = [];
                             $scope.model = model;
@@ -270,6 +277,16 @@ angular.module( 'dropdown-multiselect', [] )
 
                 if ( scope.dropdownType === 'Edit' ) {
                     angular.element( '.dropdown ul' ).addClass( 'not-allowed' );
+                }
+
+                if ( angular.isDefined( scope.config.height ) ) {
+                    var custom_height = scope.config.height,
+                        dropdownListBox = angular.element( document.querySelector( '#dropdown-scrollable' ) );
+
+                    dropdownListBox.css( 'max-height', custom_height )
+
+                } else {
+                    scope.defaultHeight = true;
                 }
             }
         };

@@ -7,21 +7,28 @@ AngularJS, jQuery, Bootstrap
 #Usage
 
 Inject <code>dropdown-multiselect</code> as your angular app dependencies.
-<pre>angular.module( 'App', [ 'dropdown-multiselect' ] );</pre>
+```javascript
+angular.module( 'App', [ 'dropdown-multiselect' ] );
+```
 
 #Features
 
-<p>Use as an <code>element</code>
-  <code>&ltdropdown-multiselect&gt&lt/dropdown-multiselect&gt</code>
-  or as an <code>attribute</code>
-  <code>&ltdiv dropdown-multiselect&gt&lt/div&gt</code>
+<p>Use as an <em>element</em>
+```html
+  <dropdown-multiselect></dropdown-multiselect>
+  ```
+  or as an <em>attribute</em>
+  ```html
+    <div dropdown-multiselect ></div>
+    ```
 </p>
 
 <h3>Set through attribute:</h3>
 
 <h4>dropdown-options</h4>
 <p>Provide data to be displayed as dropdown list items through <code>dropdown-options="options"</code> attribute. It can accept the object in a format of:</p>
-<pre>$scope.options = [ {
+```javascript
+$scope.options = [ {
         'Id': 1,
         'Name': 'Batman'
     }, {
@@ -31,53 +38,67 @@ Inject <code>dropdown-multiselect</code> as your angular app dependencies.
         'Id': 3,
         'Name': 'Hulk'
     }];
-</pre>
+```
 <p>HTML:</p>
-<pre>&ltdropdown-multiselect dropdown-options="options"&gt&lt/dropdown-multiselect&gt</pre>
+```html
+<dropdown-multiselect dropdown-options="options"></dropdown-multiselect>
+```
 
 <h4>dropdown-trackby</h4>
 <p>Initially, dropdown items are tracked by <code>Id</code> automagically, if the <code>dropdown-trackby</code> attribute is not set.</p>
 <p>If the option objects does not have <code>Id</code> property, then custom tracking could be set by providing any of the property of an object from the options data.</p>
 <p>HTML:</p>
-<pre>&ltdropdown-multiselect dropdown-options="options" dropdown-trackby="Name"&gt&lt/dropdown-multiselect&gt</pre>
+```html
+<dropdown-multiselect dropdown-options="options" dropdown-trackby="Name"></dropdown-multiselect>
+```
 <p>It is always better to provide <code>dropdown-trackby</code> attribute for correct tracking.</p>
 
 <h4>dropdown-disable</h4>
 <p>Dropdown could be disabled by providing boolean value to <code>dropdown-disable</code> attribute.
-<pre>&ltdropdown-multiselect dropdown-options="options" dropdown-disable="true"&gt&lt/dropdown-multiselect&gt</pre>
-
-Or through the controller:
-<pre>
 HTML:
-&ltdropdown-multiselect dropdown-options="options" dropdown-disable="dropdownDisable"&gt&lt/dropdown-multiselect&gt
+```html
+<dropdown-multiselect dropdown-options="options" dropdown-disable="true"></dropdown-multiselect>
+```
+Or through the controller:
+
+HTML:
+```html
+<dropdown-multiselect dropdown-options="options" dropdown-disable="dropdownDisable"></dropdown-multiselect>
+```
 
 Controller:
+```javascript
 $scope.dropdownDisable = true;
-</pre>
+```
 
 <h4>model</h4>
 The <code>model</code> attribute gives the accessibility to the selected data from the dropdown which will be available to the view and the controller.
 
-<pre>
+HTML:
+```html
     //Binding to the view
-    &ltdropdown-multiselect dropdown-options="options" dropdown-trackby="Id" model="selectedItems"&gt&lt/dropdown-multiselect&gt
+    <dropdown-multiselect dropdown-options="options" dropdown-trackby="Id" model="selectedItems"></dropdown-multiselect>
 
-    &ltdiv&gt Selected Items = {{selectedItems | json}} &lt/div&gt
+    <div> Selected Items = {{selectedItems | json}} </div>
+```
 
+Controller:
+```javascript
     //Binding to the controller
     var mySelectedValues = $scope.selectedItems;
-</pre>
+```
 
 <h3>Set through config in Controller:</h3>
 Configure the options from the controller to set <code>dropdown-config</code>.
 <p>Available <code>config</code> options:
 <pre>
-    options,    
-    trackBy,    
+    options,
+    trackBy,
     displayBy,  
     divider,
     icon,
-    displayBadge
+    displayBadge,
+    height
 </pre>
 
 <p><code>options</code>: Data to be displayed in dropdown list. This should be an array of objects.</p>
@@ -86,10 +107,10 @@ Configure the options from the controller to set <code>dropdown-config</code>.
 <p><code>divider</code>: A custom divider sign setter <code>-, : , =, # ,......</code> between the dropdown list columns. Default is <code>-</code>.</p>
 <p><code>icon</code>: A custom icon setter for the selected items. Works with Font-Awesome too. Default is Bootstrap's glyphicons checkmark.</p>
 <p><code>displayBadge</code>: Badge on the dropdown button that displays the total number of selected items from the dropdown list. Default visibility is true, but could be set to false.</p>
+<p><code>height</code>: Height of the dropdown-box, in pixel, containing the list options. Default height is set to 300px.</p>
 
-<pre>
-In the controller:
-
+Controller:
+```javascript
 var options = [ {
         'Id': 1,
         'Name': 'Batman',
@@ -110,12 +131,15 @@ $scope.config = {
     displayBy: [ 'Name', 'Costume' ],
     divider: ':',
     icon: 'glyphicon glyphicon-heart',
-    displayBadge: true
+    displayBadge: true,
+    height: '200px'
 };
+```
 
-In HTML:
-&ltdropdown-multiselect dropdown-config="config" &gt&lt/dropdown-multiselect&gt
-</pre>
+HTML:
+```html
+<dropdown-multiselect dropdown-config="config" ></dropdown-multiselect>
+```
 
 #TO DO
 - Make jQuery independent.

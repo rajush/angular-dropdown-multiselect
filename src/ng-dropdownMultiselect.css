@@ -12,10 +12,53 @@
     width: 100%;
 }
 .dropdownMultiselect {
-    max-height: 350px;
-    overflow-y: auto;
+    /*max-height: 350px;
+    overflow-y: auto;*/
 }
 #dropdownMenu > .caret {
     margin-top: 8px;
     margin-right: -6px;
+}
+.dropdown-menu div {
+    width: 93%;
+    z-index: 1;
+}
+.dropdown-static {
+    position: absolute;
+    list-style-type: none;
+    background-color: white;
+    width: 100%;
+    padding-left: 0px;
+    padding-bottom: 10px;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: #e5e5e5;
+}
+.dropdown-scrollable {
+    list-style-type: none;
+    padding: 65px 0px 0px;
+    overflow-y: auto;
+}
+.dropdown-height {
+    max-height: 300px;
+}
+.dropdown-menu .dropdown-static > li > a, .dropdown-menu .dropdown-scrollable > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    text-decoration: none;
+}
+.dropdown-menu li a:hover {
+    color: #333;
+    background-color: #F9F2F4;
+}
+
+/* for bootstrap icons only */
+
+.glyphicon {
+    position: static;
 }
