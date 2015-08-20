@@ -13,15 +13,15 @@ angular.module( 'App', [ 'dropdown-multiselect' ] );
 
 #Features
 
-<p>Use as an <em>element</em>
+<p>Use as an <em>element</em></p>
 ```html
   <dropdown-multiselect></dropdown-multiselect>
-  ```
-  or as an <em>attribute</em>
-  ```html
+```
+<p>or as an <em>attribute</em></p>
+```html
     <div dropdown-multiselect ></div>
-    ```
-</p>
+```
+
 
 <h3>Set through attribute:</h3>
 
@@ -54,21 +54,19 @@ $scope.options = [ {
 <p>It is always better to provide <code>dropdown-trackby</code> attribute for correct tracking.</p>
 
 <h4>dropdown-disable</h4>
-<p>Dropdown could be disabled by providing boolean value to <code>dropdown-disable</code> attribute.
+<p>Dropdown could be disabled by providing boolean value to <code>dropdown-disable</code> attribute.</p>
 HTML:
 ```html
 <dropdown-multiselect dropdown-options="options" dropdown-disable="true"></dropdown-multiselect>
 ```
-Or through the controller:
+<p>Or through the Controller:</p>
 
-HTML:
-```html
-<dropdown-multiselect dropdown-options="options" dropdown-disable="dropdownDisable"></dropdown-multiselect>
-```
-
-Controller:
 ```javascript
 $scope.dropdownDisable = true;
+```
+and then in HTML:
+```html
+<dropdown-multiselect dropdown-options="options" dropdown-disable="dropdownDisable"></dropdown-multiselect>
 ```
 
 <h4>model</h4>
@@ -76,7 +74,7 @@ The <code>model</code> attribute gives the accessibility to the selected data fr
 
 HTML:
 ```html
-    //Binding to the view
+    <!--Binding to the view-->
     <dropdown-multiselect dropdown-options="options" dropdown-trackby="Id" model="selectedItems"></dropdown-multiselect>
 
     <div> Selected Items = {{selectedItems | json}} </div>
