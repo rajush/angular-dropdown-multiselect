@@ -52,6 +52,19 @@ $scope.options = [ {
 <h4>dropdown-trackby</h4>
 <p>Initially, dropdown items are tracked by <code>Id</code> automagically, if the <code>dropdown-trackby</code> attribute is not set.</p>
 <p>If the option objects does not have <code>Id</code> property, then custom tracking could be set by providing any of the property of an object from the options data.</p>
+Controller:
+```javascript
+var options = [ {
+        'Name': 'Batman',
+        'Costume': 'Black'
+    }, {
+        'Name': 'Superman',
+        'Costume': 'Red & Blue'
+    }, {
+        'Name': 'Hulk',
+        'Costume': 'Green'
+    }];
+```
 <p>HTML:</p>
 ```html
 <dropdown-multiselect dropdown-options="options" dropdown-trackby="Name"></dropdown-multiselect>
