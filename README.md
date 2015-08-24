@@ -2,7 +2,7 @@
 Angular JS directive for dropdown with multi-select feature.
 
 #Dependencies
-AngularJS, jQuery, Bootstrap
+AngularJS, Bootstrap
 
 #Usage
 
@@ -22,8 +22,13 @@ angular.module( 'App', [ 'dropdown-multiselect' ] );
     <div dropdown-multiselect ></div>
 ```
 
+Provide custom name to the dropdown
+```html
+  <dropdown-multiselect>My Custom Name</dropdown-multiselect>
+```
+If no text is provided, it will default to text as <code>Select</code>.
 
-<h3>Set through attribute:</h3>
+<h3>Settings through attribute:</h3>
 
 <h4>dropdown-options</h4>
 <p>Provide data to be displayed as dropdown list items through <code>dropdown-options="options"</code> attribute. It can accept the object in a format of:</p>
@@ -138,6 +143,3 @@ HTML:
 ```html
 <dropdown-multiselect dropdown-config="config" ></dropdown-multiselect>
 ```
-
-#TO DO
-- Make jQuery independent.

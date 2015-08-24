@@ -1,3 +1,9 @@
+/*
+ * Dropdown-multiselect directive for AngularJS
+ * By Rajush Shakya
+ * https://github.com/rajush/ng-dropdown-multiselect
+ */
+
 'use strict';
 
 angular.module( 'dropdown-multiselect', [] )
@@ -5,20 +11,22 @@ angular.module( 'dropdown-multiselect', [] )
         return {
             restrict: 'AE',
             replace: true,
-            template: '<div class="dropdown">' +
-                '<button class="btn btn-default dropdown-toggle" ng-class="{\'disabled\':disabled}" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' +
-                '<span class="pull-left">Select </span>' +
+            transclude: true,
+            template: '<div class="dropdown" id="dropdownMultiselect">' +
+                '<button class="btn btn-default dropdown-toggle" ng-class="{\'disabled\':disabled}" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-click="dropdownToggle()">' +
+                '<span class="pull-left"  ng-if="!hasText">Select </span>' +
+                '<span class="pull-left" ng-transclude></span>' +
                 '<div class="pull-right">' +
                 '<span class="badge" ng-if="isBadgeVisible"> {{model.length}}</span>' +
                 '<span class="caret"></span>' +
                 '</div>' +
                 '</button>' +
-                '<ul class="dropdown-menu dropdownMultiselect" aria-labelledby="dropdownMenu">' +
+                '<ul class="dropdown-menu" aria-labelledby="dropdownMenu">' +
                 '<li>' +
                 '<div>' +
                 '<ul class="dropdown-static">' +
-                '<li><a ng-click="selectAll()"><i class="fa fa-check"></i> Select All</a></li>' +
-                '<li><a ng-click="unSelectAll()"><i class="fa fa-times-circle"></i> Unselect All</a></li>' +
+                '<li><a ng-click="selectAll()"><i class="glyphicon glyphicon-ok"></i> Select All</a></li>' +
+                '<li><a ng-click="unSelectAll()"><i class="glyphicon glyphicon-remove"></i> Unselect All</a></li>' +
                 '</ul>' +
                 '</div>' +
                 '<ul class="dropdown-scrollable" ng-class="{\'dropdown-height\': defaultHeight}">' +
@@ -165,7 +173,7 @@ angular.module( 'dropdown-multiselect', [] )
                             return false;
                         } else {
                             for ( var i = 0; i < options.length; i++ ) {
-                                var id = options[ i ][ key ],
+                                var id = options[ i ][ $scope.trackByKey ],
                                     chainId = options[ i ].ChainId,
                                     obj = {};
 
@@ -173,7 +181,7 @@ angular.module( 'dropdown-multiselect', [] )
 
                                 // looking for if each item from the 'options' array already exists in 'model' array
                                 for ( var x = 0; x < model.length; x++ ) {
-                                    var current = model[ x ][ key ];
+                                    var current = model[ x ][ $scope.trackByKey ];
 
                                     // item from the 'options' array already exists in 'model' array
                                     if ( id === current ) {
@@ -183,8 +191,7 @@ angular.module( 'dropdown-multiselect', [] )
                                 }
 
                                 if ( !found ) {
-                                    obj[ key ] = id;
-                                    obj.ChainId = chainId;
+                                    obj[ $scope.trackByKey ] = id;
 
                                     model.push( options[ i ] );
                                 }
@@ -210,15 +217,14 @@ angular.module( 'dropdown-multiselect', [] )
 
                     $scope.setSelectedItem = function () {
 
-                        var id = this.option[ key ],
+                        var id = this.option[ $scope.trackByKey ],
                             chainId = this.option.ChainId,
                             obj = {};
 
                         var duplicate = isDuplicate( id, model );
 
                         if ( !duplicate ) {
-                            obj[ key ] = id;
-                            obj.ChainId = chainId;
+                            obj[ $scope.trackByKey ] = id;
 
                             model.push( this.option );
                         }
@@ -234,7 +240,7 @@ angular.module( 'dropdown-multiselect', [] )
 
                         for ( var i = 0; i < model.length; i++ ) {
                             // add checkmark if the selected item is already in 'model' array
-                            if ( model[ i ][ key ] === id ) {
+                            if ( model[ i ][ $scope.trackByKey ] === id ) {
                                 return icon;
                             }
                         }
@@ -248,11 +254,11 @@ angular.module( 'dropdown-multiselect', [] )
 
                 function isDuplicate( id, array ) {
                     for ( var i = 0; i < array.length; i++ ) {
-                        var current = array[ i ][ key ];
+                        var current = array[ i ][ $scope.trackByKey ];
 
                         // remove if already exists
                         if ( id === current ) {
-                            var indexOfId = findIndexByKeyValue( array, key, id );
+                            var indexOfId = findIndexByKeyValue( array, $scope.trackByKey, id );
                             array.splice( indexOfId, 1 );
                             return true;
                         }
@@ -270,14 +276,31 @@ angular.module( 'dropdown-multiselect', [] )
 
             },
             link: function ( scope, element, attr, ctrl ) {
-                //stop the dropdown from auto close
-                angular.element( '.dropdown .dropdown-menu' ).on( 'click', function ( e ) {
-                    e.stopPropagation();
-                } );
+                scope.dropdownToggle = function () {
+                    angular.element( document.querySelector( '.dropdown-menu' ) ).toggleClass( 'dropdown-show' );
+                };
 
-                if ( scope.dropdownType === 'Edit' ) {
-                    angular.element( '.dropdown ul' ).addClass( 'not-allowed' );
-                }
+
+                document.addEventListener( 'click', function ( event ) {
+                    var dropdownMultiselect = document.getElementById( 'dropdownMultiselect' );
+
+                    if ( event.srcElement.offsetParent !== null ) {
+                        var eventSrc = event.srcElement.offsetParent;
+
+                        while ( eventSrc !== dropdownMultiselect ) {
+                            eventSrc = eventSrc[ 'offsetParent' ];
+
+                            if ( eventSrc === null ) {
+                                angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
+                                break;
+                            }
+                        }
+
+                    } else {
+                        angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' )
+                    }
+
+                }, true );
 
                 if ( angular.isDefined( scope.config.height ) ) {
                     var custom_height = scope.config.height,
@@ -288,6 +311,11 @@ angular.module( 'dropdown-multiselect', [] )
                 } else {
                     scope.defaultHeight = true;
                 }
+
+                var transcluded = element.find('span').contents();
+
+                 scope.hasText = (transcluded.length > 0);
+                 
             }
         };
     } ] );

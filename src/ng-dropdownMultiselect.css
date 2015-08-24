@@ -11,10 +11,6 @@
 .dropdown .dropdown-menu, .dropdown button {
     width: 100%;
 }
-.dropdownMultiselect {
-    /*max-height: 350px;
-    overflow-y: auto;*/
-}
 #dropdownMenu > .caret {
     margin-top: 8px;
     margin-right: -6px;
@@ -55,6 +51,9 @@
 .dropdown-menu li a:hover {
     color: #333;
     background-color: #F9F2F4;
+}
+.dropdown-show {
+    display: block;
 }
 
 /* for bootstrap icons only */
