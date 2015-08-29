@@ -32,11 +32,11 @@
 }
 .dropdown-scrollable {
     list-style-type: none;
-    padding: 65px 0px 0px;
+    padding: 0px 0px 0px;
     overflow-y: auto;
 }
 .dropdown-height {
-    max-height: 300px;
+    max-height: 200px;
 }
 .dropdown-menu .dropdown-static > li > a, .dropdown-menu .dropdown-scrollable > li > a {
     display: block;
@@ -60,4 +60,25 @@
 
 .glyphicon {
     position: static;
+}
+
+/* filter search */
+
+.filter-parent {
+    position: relative;
+    font-size: 18px;
+    padding-top: 0px;
+    margin: 3px auto 0px;
+}
+.filter-parent label {
+    position: absolute;
+    left: 7px;
+    top: 4px;
+}
+.filter-parent > div {
+    width: 100%;
+}
+.filter-parent #filter-by {
+    padding: 6px 26px;
+    border-radius: 23px;
 }
