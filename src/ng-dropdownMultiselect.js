@@ -27,17 +27,17 @@ angular.module( 'dropdown-multiselect', [] )
                 '<ul class="dropdown-static">' +
                 '<li><a ng-click="selectAll()"><i class="glyphicon glyphicon-ok"></i> Select All</a></li>' +
                 '<li><a ng-click="unSelectAll()"><i class="glyphicon glyphicon-remove"></i> Unselect All</a></li>' +
-                '<div class="filter-parent" id="search">' +
-                '<label for="filter-by"><i class="glyphicon glyphicon-remove"></i></label>' +
+                '<div class="filter-parent" id="search" ng-if="isFilterVisible">' +
+                '<label for="filter-by"><i class="glyphicon glyphicon-search"></i></label>' +
                 '<div>' +
-                '<input placeholder="Search" id="filter-by" class="form-control" tabindex="1" ng-model="option">' +
+                '<input placeholder="Search" id="filter-by" class="form-control" tabindex="1" ng-model="$parent.option">' +
                 '</div>' +
                 '</div>' +
                 '</ul>' +
                 '</div>' +
                 '</li>' +
                 '<li>' +
-                '<ul class="dropdown-scrollable" ng-class="{\'dropdown-height\': defaultHeight}">' +
+                '<ul class="dropdown-scrollable" ng-class="{\'dropdown-height\': defaultHeight, \'hasfilter\': isFilterVisible === true}">' +
                 '<li ng-repeat="option in options | filter: option">' +
                 '<a ng-click="setSelectedItem()">' +
                 '{{option[leftKey]}} {{divider}} {{option[rightKey]}} <span class="pull-right" ng-class="isChecked(option[trackByKey], dropdownType)"></span>' +
@@ -59,6 +59,7 @@ angular.module( 'dropdown-multiselect', [] )
             controller: function ( $scope ) {
                 var model = [],
                     badgeVisibility = true, // default badge visibility
+                    filterVisibility = false, // drfault filter visibility
                     divider = '-', // default divider sign
                     icon = 'glyphicon glyphicon-ok', // default icon
                     viewType = $scope.dropdownType,
@@ -68,6 +69,8 @@ angular.module( 'dropdown-multiselect', [] )
                 $scope.trackByKey = key;
 
                 $scope.isBadgeVisible = badgeVisibility;
+
+                $scope.isFilterVisible = filterVisibility;
 
                 $scope.divider = divider;
 
@@ -103,6 +106,12 @@ angular.module( 'dropdown-multiselect', [] )
 
                         if ( $scope.config.hasOwnProperty( 'icon' ) ) {
                             icon = $scope.config.icon;
+                        }
+
+                        if ( $scope.config.hasOwnProperty( 'filter' ) ) {
+                            filterVisibility = $scope.config.filter;
+
+                            $scope.isFilterVisible = filterVisibility;
                         }
 
                         if ( $scope.config.hasOwnProperty( 'displayBadge' ) ) {
@@ -312,7 +321,7 @@ angular.module( 'dropdown-multiselect', [] )
 
                 if ( angular.isDefined( scope.config.height ) ) {
                     var custom_height = scope.config.height,
-                        dropdownListBox = angular.element( document.querySelector( '#dropdown-scrollable' ) );
+                        dropdownListBox = angular.element( document.querySelector( '.dropdown-scrollable' ) );
 
                     dropdownListBox.css( 'max-height', custom_height )
 
