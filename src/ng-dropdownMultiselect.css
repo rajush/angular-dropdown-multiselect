@@ -32,8 +32,12 @@
 }
 .dropdown-scrollable {
     list-style-type: none;
-    padding: 65px 0px 0px;
+    padding: 0px 0px 0px;
+    margin-top: 65px;
     overflow-y: auto;
+}
+.hasfilter {
+    margin-top: 100px;
 }
 .dropdown-height {
     max-height: 300px;
@@ -60,4 +64,27 @@
 
 .glyphicon {
     position: static;
+}
+
+/* filter search */
+
+.filter-parent {
+    position: relative;
+    font-size: 18px;
+    padding-top: 0px;
+    margin: 3px auto 0px;
+}
+.filter-parent label {
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    color: #C3BFBF;
+}
+.filter-parent > div {
+    width: 100%;
+}
+.filter-parent #filter-by {
+    padding: 6px 26px;
+    border-radius: 23px;
+    height: 30px;
 }
