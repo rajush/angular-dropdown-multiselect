@@ -28,7 +28,7 @@ angular.module( 'dropdown-multiselect', [] )
                 '<li><a ng-click="selectAll()"><i class="glyphicon glyphicon-ok"></i> Select All</a></li>' +
                 '<li><a ng-click="unSelectAll()"><i class="glyphicon glyphicon-remove"></i> Unselect All</a></li>' +
                 '<div class="filter-parent" id="search">' +
-                '<label for="filter-by"><i class="fa fa-search"></i></label>' +
+                '<label for="filter-by"><i class="glyphicon glyphicon-remove"></i></label>' +
                 '<div>' +
                 '<input placeholder="Search" id="filter-by" class="form-control" tabindex="1" ng-model="option">' +
                 '</div>' +

@@ -73,7 +73,8 @@
 .filter-parent label {
     position: absolute;
     left: 7px;
-    top: 4px;
+    top: 6px;
+    color: #C3BFBF;
 }
 .filter-parent > div {
     width: 100%;
