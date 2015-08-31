@@ -27,18 +27,10 @@ angular.module( 'dropdown-multiselect', [] )
                 '<ul class="dropdown-static">' +
                 '<li><a ng-click="selectAll()"><i class="glyphicon glyphicon-ok"></i> Select All</a></li>' +
                 '<li><a ng-click="unSelectAll()"><i class="glyphicon glyphicon-remove"></i> Unselect All</a></li>' +
-                '<div class="filter-parent" id="search">' +
-                '<label for="filter-by"><i class="glyphicon glyphicon-remove"></i></label>' +
-                '<div>' +
-                '<input placeholder="Search" id="filter-by" class="form-control" tabindex="1" ng-model="option">' +
-                '</div>' +
-                '</div>' +
                 '</ul>' +
                 '</div>' +
-                '</li>' +
-                '<li>' +
                 '<ul class="dropdown-scrollable" ng-class="{\'dropdown-height\': defaultHeight}">' +
-                '<li ng-repeat="option in options | filter: option">' +
+                '<li ng-repeat="option in options">' +
                 '<a ng-click="setSelectedItem()">' +
                 '{{option[leftKey]}} {{divider}} {{option[rightKey]}} <span class="pull-right" ng-class="isChecked(option[trackByKey], dropdownType)"></span>' +
                 '</a>' +
@@ -320,10 +312,10 @@ angular.module( 'dropdown-multiselect', [] )
                     scope.defaultHeight = true;
                 }
 
-                var transcluded = element.find( 'span' ).contents();
+                var transcluded = element.find('span').contents();
 
-                scope.hasText = ( transcluded.length > 0 );
-
+                 scope.hasText = (transcluded.length > 0);
+                 
             }
         };
     } ] );
