@@ -106,6 +106,7 @@ Controller:
 
 <h3>Set through config in Controller:</h3>
 Configure the options from the controller to set <code>dropdown-config</code>.
+<p><em>NOTE: </em> When <code>dropdown-config</code> is being used, it will overwrite <code>dropdown-options</code> and <code>dropdown-trackby</code> attribute, if in use.</p>
 <p>Available <code>config</code> options:
 <pre>
     options,
