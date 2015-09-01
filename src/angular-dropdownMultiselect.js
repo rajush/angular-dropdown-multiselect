@@ -1,7 +1,7 @@
 /*
  * Dropdown-multiselect directive for AngularJS
  * By Rajush Shakya
- * https://github.com/rajush/ng-dropdown-multiselect
+ * https://github.com/rajush/angular-dropdown-multiselect
  */
 
 'use strict';
