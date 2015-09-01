@@ -1,4 +1,4 @@
-# ng-dropdown-multiselect
+# angular-dropdown-multiselect
 Angular JS directive for dropdown with multi-select feature.
 
 #Dependencies
