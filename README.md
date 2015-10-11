@@ -166,3 +166,6 @@ HTML:
 ```html
 <dropdown-multiselect dropdown-config="config" ></dropdown-multiselect>
 ```
+#Tested with
+
+:fa-chrome: :fa-firefox: :fa-safari:
