@@ -168,4 +168,4 @@ HTML:
 ```
 #Tested with
 
-:smile:
+![Alt text](https://cdn1.iconfinder.com/data/icons/humano2/32x32/apps/firefox-icon.png "Firefox")
