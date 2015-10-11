@@ -40,7 +40,7 @@ angular.module( 'dropdown-multiselect', [] )
                 '<ul class="dropdown-scrollable" ng-class="{\'dropdown-height\': defaultHeight, \'hasfilter\': isFilterVisible === true}">' +
                 '<li ng-repeat="option in options | filter: option">' +
                 '<a ng-click="setSelectedItem()">' +
-                '{{option[leftKey]}} {{divider}} {{option[rightKey]}} <span class="pull-right" ng-class="isChecked(option[trackByKey], dropdownType)"></span>' +
+                '<span class="pull-right" ng-class="isChecked(option[trackByKey], dropdownType)"></span> {{option[leftKey]}} {{divider}} {{option[rightKey]}}' +
                 '</a>' +
                 '</li>' +
                 '</ul>' +
@@ -139,27 +139,6 @@ angular.module( 'dropdown-multiselect', [] )
                         //run auto assign condition
                         keyIsUndefined( key );
 
-                    }
-
-                    function keyIsUndefined( key ) {
-                        // if dropdownTrackby is not defined
-                        if ( angular.isUndefined( key ) ) {
-
-                            // TODO: might need a better alternative for checking
-                            /****************************************************/
-                            //check if an object in option array has a property named 'Id' or 'id'.
-                            //here, doing a check only on first index assuming that the objects are set with correct property
-                            key = $scope.options[ 0 ].hasOwnProperty( 'Id' ) ? 'Id' : $scope.options[ 0 ].hasOwnProperty( 'id' ) ? 'id' : false;
-
-                            // set trackByKey to newly auto assigned key for binding with view (used for check icon)
-                            $scope.trackByKey = key;
-
-                            //if no key throw error
-                            if ( key === false ) {
-                                throw 'ReferenceError: Expecting property "Id" in an object from an array binded to "dropdown-options" attribute. Consider providing "dropdown-trackby" attribute or make sure property "Id" exists in binded array\'s object.';
-                            }
-
-                        }
                     }
 
                     var unbindWatcher = $scope.$watch( 'options', function ( newVal, oldVal ) {
@@ -269,6 +248,27 @@ angular.module( 'dropdown-multiselect', [] )
                     console.error( e );
                 }
 
+                function keyIsUndefined( key ) {
+                    // if dropdownTrackby is not defined
+                    if ( angular.isUndefined( key ) ) {
+
+                        // TODO: might need a better alternative for checking
+                        /****************************************************/
+                        //check if an object in option array has a property named 'Id' or 'id'.
+                        //here, doing a check only on first index assuming that the objects are set with correct property
+                        key = $scope.options[ 0 ].hasOwnProperty( 'Id' ) ? 'Id' : $scope.options[ 0 ].hasOwnProperty( 'id' ) ? 'id' : false;
+
+                        // set trackByKey to newly auto assigned key for binding with view (used for check icon)
+                        $scope.trackByKey = key;
+
+                        //if no key throw error
+                        if ( key === false ) {
+                            throw 'ReferenceError: Expecting property "Id" in an object from an array binded to "dropdown-options" attribute. Consider providing "dropdown-trackby" attribute or make sure property "Id" exists in binded array\'s object.';
+                        }
+
+                    }
+                }
+
                 function isDuplicate( id, array ) {
                     for ( var i = 0; i < array.length; i++ ) {
                         var current = array[ i ][ $scope.trackByKey ];
@@ -299,10 +299,13 @@ angular.module( 'dropdown-multiselect', [] )
 
 
                 document.addEventListener( 'click', function ( event ) {
-                    var dropdownMultiselect = document.getElementById( 'dropdownMultiselect' );
+                    var dropdownMultiselect = document.getElementById( 'dropdownMultiselect' ),
 
-                    if ( event.srcElement.offsetParent !== null ) {
-                        var eventSrc = event.srcElement.offsetParent;
+                        //finding parent target element for browser
+                        parentTarget = ( angular.isDefined( event.srcElement ) ) ? event.srcElement.offsetParent /* chrome/safari */ : event.originalTarget.offsetParent /*firefox*/ ;
+
+                    if ( parentTarget !== null ) {
+                        var eventSrc = parentTarget;
 
                         while ( eventSrc !== dropdownMultiselect ) {
                             eventSrc = eventSrc[ 'offsetParent' ];

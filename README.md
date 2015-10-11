@@ -6,6 +6,12 @@ AngularJS, Bootstrap
 
 #Usage
 
+Include both <code>.css</code> and <code>.js</code> files in <code>index.html</code>.
+```html
+<link rel="stylesheet" href="angular-dropdownMultiselect.css">
+<script src="angular-dropdownMultiselect.js"></script>
+```
+
 Inject <code>dropdown-multiselect</code> as your angular app dependencies.
 ```javascript
 angular.module( 'App', [ 'dropdown-multiselect' ] );
