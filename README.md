@@ -2,6 +2,8 @@
 Angular JS directive for dropdown with multi-select feature.
 
 #Dependencies
+
+![Alt text](https://www.iconfinder.com/icons/308434/angular_front-end_javascript_long_shadow_web_web_technology_icon#size=48 "AngularJS")
 AngularJS, Bootstrap
 
 #Usage
