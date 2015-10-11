@@ -168,4 +168,4 @@ HTML:
 ```
 #Tested with
 
-:fa-thumbs-up:
+:smile:
