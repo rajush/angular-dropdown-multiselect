@@ -168,4 +168,4 @@ HTML:
 ```
 #Tested with
 
-:fa-chrome: :fa-firefox: :fa-safari:
+:fa-thumbs-up:
