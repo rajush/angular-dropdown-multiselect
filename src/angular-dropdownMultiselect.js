@@ -25,8 +25,8 @@ angular.module( 'dropdown-multiselect', [] )
                 '<li>' +
                 '<div>' +
                 '<ul class="dropdown-static">' +
-                '<li><a ng-click="selectAll()"><i class="glyphicon glyphicon-ok"></i> Select All</a></li>' +
-                '<li><a ng-click="unSelectAll()"><i class="glyphicon glyphicon-remove"></i> Unselect All</a></li>' +
+                '<li ng-if="multiSelect"><a ng-click="selectAll()"><i class="glyphicon glyphicon-ok"></i> Select All</a></li>' +
+                '<li ng-if="multiSelect"><a ng-click="unSelectAll()"><i class="glyphicon glyphicon-remove"></i> Unselect All</a></li>' +
                 '<div class="filter-parent" id="search" ng-if="isFilterVisible">' +
                 '<label for="filter-by"><i class="glyphicon glyphicon-search"></i></label>' +
                 '<div>' +
@@ -53,12 +53,13 @@ angular.module( 'dropdown-multiselect', [] )
                 disableDropdown: '=dropdownDisable', // boolean
                 dropdownType: '=', // view type
                 model: '=?', // model to bind with view & bind data back to the controller
-                options: '=dropdownOptions', // object for repeater
+                dropdownOptions: '=dropdownOptions', // object for repeater
                 notifyParent: '&dropdownSelected' // notifier
             },
             controller: function ( $scope ) {
                 var model = [],
                     badgeVisibility = true, // default badge visibility
+                    multiSelect = true, // default multiSelect is "ON"
                     filterVisibility = false, // drfault filter visibility
                     divider = '-', // default divider sign
                     icon = 'glyphicon glyphicon-ok', // default icon
@@ -74,11 +75,30 @@ angular.module( 'dropdown-multiselect', [] )
 
                 $scope.divider = divider;
 
+                $scope.multiSelect = multiSelect;
+
                 $scope.model = model;
 
                 try {
+                    if ( angular.isUndefined( $scope.dropdownOptions ) && angular.isUndefined( $scope.config ) ) {
+                        throw 'Error: Missing array for dropdown list. Consider providing array through [dropdown-options] or [dropdown-config] attribute in the directive tag.';
+                    }
 
-                    //check if config is defined or not
+                    // check if dropdownOptions is defined or not
+                    if ( angular.isDefined( $scope.dropdownOptions ) ) {
+                        // setting dropdown list items
+                        $scope.options = $scope.dropdownOptions;
+
+                        // auto assigning left display value and right display value
+                        autoLeftKeyRightKey();
+                    }
+
+                    /*===================================================================*/
+                    /*   NOTE: WHEN config AND dropdownOptions ARE BOTH USED TOGETHER,   */
+                    /*         config WILL OVERWRITE dropdownOptions.                    */
+                    /*===================================================================*/
+
+                    // check if config is defined or not
                     if ( angular.isDefined( $scope.config ) ) {
                         // if 'options' property exists, set the dropdown list items
                         if ( $scope.config.hasOwnProperty( 'options' ) ) {
@@ -90,14 +110,8 @@ angular.module( 'dropdown-multiselect', [] )
                             $scope.leftKey = $scope.config.displayBy[ 0 ];
                             $scope.rightKey = $scope.config.displayBy[ 1 ];
                         } else {
-                            // grab the first two property and set it automatically as leftKey and rightKey
-                            var optionsProperties = [];
-                            for ( var prop in $scope.options[ 0 ] ) {
-                                optionsProperties.push( prop );
-                            }
-
-                            $scope.leftKey = optionsProperties[ 0 ];
-                            $scope.rightKey = optionsProperties[ 1 ];
+                            // auto assigning left display value and right display value
+                            autoLeftKeyRightKey();
                         }
 
                         if ( $scope.config.hasOwnProperty( 'divider' ) ) {
@@ -119,6 +133,13 @@ angular.module( 'dropdown-multiselect', [] )
 
                             $scope.isBadgeVisible = badgeVisibility;
                         }
+
+                        if ( $scope.config.hasOwnProperty( 'multiSelect' ) ) {
+                            multiSelect = ( angular.equals( true, $scope.config.multiSelect ) ) ? true : false;
+
+                            $scope.multiSelect = multiSelect;
+                        }
+
 
                         // if 'trackBy' property exists, set the main key to track the dropdown list
                         //(config file overrites the dropdown-trackby attributes)
@@ -217,11 +238,19 @@ angular.module( 'dropdown-multiselect', [] )
                             chainId = this.option.ChainId,
                             obj = {};
 
+                        // when multi select feature turned off through "config"
+                        if ( multiSelect === false ) {
+                            if ( isDuplicate( id, model ) ) return false;
+                            model[ 0 ] = this.option;
+                            return false;
+                        }
+
                         var duplicate = isDuplicate( id, model );
 
                         if ( !duplicate ) {
                             obj[ $scope.trackByKey ] = id;
 
+                            // add to array
                             model.push( this.option );
                         }
 
@@ -246,6 +275,16 @@ angular.module( 'dropdown-multiselect', [] )
 
                 } catch ( e ) {
                     console.error( e );
+                }
+
+                function autoLeftKeyRightKey() {
+                    // grab the first two property and set it automatically as leftKey and rightKey
+                    var optionsProperties = [];
+                    for ( var prop in $scope.options[ 0 ] ) {
+                        optionsProperties.push( prop );
+                    }
+                    $scope.leftKey = optionsProperties[ 0 ]; // setthing by 1st property
+                    $scope.rightKey = optionsProperties[ 1 ]; // setting by 2nd property
                 }
 
                 function keyIsUndefined( key ) {
@@ -322,14 +361,21 @@ angular.module( 'dropdown-multiselect', [] )
 
                 }, true );
 
-                if ( angular.isDefined( scope.config.height ) ) {
-                    var custom_height = scope.config.height,
-                        dropdownListBox = angular.element( document.querySelector( '.dropdown-scrollable' ) );
+                var dropdownListBox = angular.element( document.querySelector( '.dropdown-scrollable' ) );
 
-                    dropdownListBox.css( 'max-height', custom_height )
+                if ( angular.isDefined( scope.config ) && angular.isDefined( scope.config.height ) ) {
+                    var custom_height = scope.config.height;
+
+                    dropdownListBox.css( 'max-height', custom_height );
 
                 } else {
                     scope.defaultHeight = true;
+                }
+
+                if ( scope.multiSelect === false && scope.isFilterVisible === true ) {
+                    dropdownListBox.css( 'margin-top', '50px' );
+                } else if ( scope.multiSelect === false && scope.isFilterVisible === false ) {
+                    dropdownListBox.css( 'margin-top', '10px' );
                 }
 
                 var transcluded = element.find( 'span' ).contents();

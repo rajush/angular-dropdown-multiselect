@@ -16,7 +16,7 @@
     margin-right: -6px;
 }
 .dropdown-menu div {
-    width: 93%;
+    width: 100%;
     z-index: 1;
 }
 .dropdown-static {
@@ -72,11 +72,13 @@
     position: relative;
     font-size: 18px;
     padding-top: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
     margin: 3px auto 0px;
 }
 .filter-parent label {
     position: absolute;
-    left: 7px;
+    left: 27px;
     top: 5px;
     color: #C3BFBF;
 }

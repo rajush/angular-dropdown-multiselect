@@ -57,7 +57,7 @@ $scope.options = [ {
 ```
 
 <h4>dropdown-trackby</h4>
-<p>Initially, dropdown items are tracked by <code>Id</code> automagically, if the <code>dropdown-trackby</code> attribute is not set.</p>
+<p>Initially, dropdown items are tracked by <code>Id</code> automagically (considering "Id" property is present in all objects in an array), if the <code>dropdown-trackby</code> attribute is not set.</p>
 <p>If the option objects does not have <code>Id</code> property, then custom tracking could be set by providing any of the property of an object from the options data.</p>
 Controller:
 ```javascript
@@ -76,10 +76,10 @@ var options = [ {
 ```html
 <dropdown-multiselect dropdown-options="options" dropdown-trackby="Name"></dropdown-multiselect>
 ```
-<p>It is always better to provide <code>dropdown-trackby</code> attribute for correct tracking.</p>
+<p><em>NOTE: </em> It is always better to provide <code>dropdown-trackby</code> attribute for correct tracking, when <code>dropdown-options</code> is being used.</p>
 
 <h4>dropdown-disable</h4>
-<p>Dropdown could be disabled by providing boolean value to <code>dropdown-disable</code> attribute.</p>
+<p>Dropdown could be disabled by directly providing boolean value to <code>dropdown-disable</code> attribute.</p>
 HTML:
 ```html
 <dropdown-multiselect dropdown-options="options" dropdown-disable="true"></dropdown-multiselect>
@@ -112,8 +112,8 @@ Controller:
 ```
 
 <h3>Set through config in Controller:</h3>
-Configure the options from the controller to set <code>dropdown-config</code>.
-<p><em>NOTE: </em> When <code>dropdown-config</code> is being used, it will overwrite <code>dropdown-options</code> and <code>dropdown-trackby</code> attribute, if in use.</p>
+Configure the options from the controller to set <code>dropdown-config</code> attribute.
+<p><em>NOTE: </em> When <code>dropdown-config</code> is being used, it will overwrite <code>dropdown-options</code> and <code>dropdown-trackby</code> attribute, if in use. Therefore, it's better to use just one at a time.</p>
 <p>Available <code>config</code> options:
 <pre>
     options,
@@ -134,6 +134,7 @@ Configure the options from the controller to set <code>dropdown-config</code>.
 <h6>displayBadge:</h6> <p>Badge on the dropdown button that displays the total number of selected items from the dropdown list. Default visibility is <code>true</code>, but could be set to <code>false</code>.</p>
 <h6>height:</h6> <p>Height of the scrollable item list in a dropdown-box, in pixel. Default height is set to <code>200px</code>.</p>
 <h6>filter:</h6> <p>Filter/search items from the dropdown list. Default visibility is <code>false</code>, but could be set to <code>true</code>.</p>
+<h6>multiSelect:</h6> <p>Turn multi-select list items "on" or "off". Default is <code>true</code>, but could be turned "off" by setting <code>false</code>.</p>
 
 Controller:
 ```javascript
@@ -159,7 +160,8 @@ $scope.config = {
     icon: 'glyphicon glyphicon-heart',
     displayBadge: true,
     height: '200px',
-    filter: true
+    filter: true,
+    multiSelect: false
 };
 ```
 
@@ -172,5 +174,3 @@ HTML:
 ![Alt text](https://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/32/chrome.png "Chrome")
 ![Alt text](https://cdn1.iconfinder.com/data/icons/humano2/32x32/apps/firefox-icon.png "Firefox")
 ![Alt text](https://cdn1.iconfinder.com/data/icons/fatcow/32x32/safari_browser.png "Safari")
-
-
