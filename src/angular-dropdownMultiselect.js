@@ -334,7 +334,6 @@ angular.module( 'dropdown-multiselect', [] )
             link: function ( scope, element, attr, ctrl ) {
 
                 function handleEventCall( event ) {
-                    console.log( event );
                     var dropdownMultiselect = document.getElementById( 'dropdownMultiselect' ),
 
                         //finding parent target element for browser
