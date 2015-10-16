@@ -34,7 +34,8 @@
     list-style-type: none;
     padding: 0px 0px 0px;
     margin-top: 65px;
-    overflow-y: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 .hasfilter {
     margin-top: 100px;
@@ -57,13 +58,19 @@
     background-color: #F9F2F4;
 }
 .dropdown-show {
-    display: block;
+    display: block !important;
+}
+.dropdown-hide {
+    display: none !important;
 }
 
 /* for bootstrap icons only */
 
 .glyphicon {
     position: static;
+}
+.pad-icon {
+    padding-top: 4px;
 }
 
 /* filter search */
@@ -89,4 +96,15 @@
     padding: 6px 26px;
     border-radius: 23px;
     height: 30px;
+}
+
+/* Portrait */
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+    .hasfilter {
+        margin-top: 112px !important;
+    }
+    .dropdown-menu .dropdown-static > li > a, .dropdown-menu .dropdown-scrollable > li > a {
+        line-height: 2;
+    }
 }

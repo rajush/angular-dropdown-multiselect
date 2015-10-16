@@ -13,7 +13,7 @@ angular.module( 'dropdown-multiselect', [] )
             replace: true,
             transclude: true,
             template: '<div class="dropdown" id="dropdownMultiselect">' +
-                '<button class="btn btn-default dropdown-toggle" ng-class="{\'disabled\':disabled}" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-click="dropdownToggle()">' +
+                '<button class="btn btn-default dropdown-toggle" ng-class="{\'disabled\':disabled}" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true">' +
                 '<span class="pull-left"  ng-if="!hasText">Select </span>' +
                 '<span class="pull-left" ng-transclude></span>' +
                 '<div class="pull-right">' +
@@ -21,7 +21,7 @@ angular.module( 'dropdown-multiselect', [] )
                 '<span class="caret"></span>' +
                 '</div>' +
                 '</button>' +
-                '<ul class="dropdown-menu" aria-labelledby="dropdownMenu">' +
+                '<ul class="dropdown-menu" >' +
                 '<li>' +
                 '<div>' +
                 '<ul class="dropdown-static">' +
@@ -332,34 +332,53 @@ angular.module( 'dropdown-multiselect', [] )
 
             },
             link: function ( scope, element, attr, ctrl ) {
-                scope.dropdownToggle = function () {
-                    angular.element( document.querySelector( '.dropdown-menu' ) ).toggleClass( 'dropdown-show' );
-                };
 
-
-                document.addEventListener( 'click', function ( event ) {
+                function handleEventCall( event ) {
+                    console.log( event );
                     var dropdownMultiselect = document.getElementById( 'dropdownMultiselect' ),
 
                         //finding parent target element for browser
                         parentTarget = ( angular.isDefined( event.srcElement ) ) ? event.srcElement.offsetParent /* chrome/safari */ : event.originalTarget.offsetParent /*firefox*/ ;
 
                     if ( parentTarget !== null ) {
-                        var eventSrc = parentTarget;
+                        var eventSrc = parentTarget,
+                            inside;
 
                         while ( eventSrc !== dropdownMultiselect ) {
-                            eventSrc = eventSrc[ 'offsetParent' ];
+                            var dropdownMenuList = angular.element( document.querySelector( '.dropdown-menu' ) );
 
-                            if ( eventSrc === null ) {
-                                angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
-                                break;
-                            }
+                            eventSrc = eventSrc[ 'offsetParent' ];
+                            inside = true;
+                            dropdownMenuList.addClass( 'dropdown-show' );
+
+                            if ( eventSrc === null ) break;
                         }
 
-                    } else {
-                        angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' )
-                    }
+                        if ( eventSrc === null || ( eventSrc === dropdownMultiselect && !inside ) ) {
+                            var dropdownMenuBtn = angular.element( document.querySelector( '.dropdown-menu' ) );
 
-                }, true );
+                            if ( angular.element( document.querySelector( '.dropdown-menu' ) )[ 0 ].classList[ 1 ] === 'dropdown-show' ) {
+                                angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
+                                angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'none' );
+                            } else {
+                                angular.element( document.querySelector( '.dropdown-menu' ) ).addClass( 'dropdown-show' );
+                                angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'block' );
+                            }
+
+                        }
+                    } else {
+                        angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
+                        angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'none' );
+                    }
+                }
+
+                if ( 'ontouchstart' in window ) {
+                    /* browser with Touch Events
+                       running on touch-capable device */
+                    document.addEventListener( 'touchstart', handleEventCall, false );
+                } else {
+                    document.addEventListener( 'mouseup', handleEventCall, false );
+                }
 
                 var dropdownListBox = angular.element( document.querySelector( '.dropdown-scrollable' ) );
 
