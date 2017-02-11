@@ -1,0 +1,19 @@
+{
+  "name": "angular-dropdown-multiselect",
+  "version": "1.0.0",
+  "description": "Dropdown with multi-select feature.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajush/angular-dropdown-multiselect.git"
+  },
+  "author": "Rajush Shakya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajush/angular-dropdown-multiselect/issues"
+  },
+  "homepage": "https://github.com/rajush/angular-dropdown-multiselect#readme"
+}
