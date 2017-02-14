@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>angular-dropdown-multiselect</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/angular-dropdownMultiselect.css">
+    </head>
+    <body ng-controller="AppController">
+        <h1>App started</h1>
+
+        <dropdown-multiselect
+            dropdown-config="config"
+            model="selectedItems"
+            ng-click="selected(selectedItems)">
+        </dropdown-multiselect>
+
+        <pre class="pre-scroll">
+            Selected = {{selectedItems | json}}
+        </pre>
+
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="assets/angular-dropdownMultiselect.js"></script>
+        <!-- <script src="assets/angular-dropdown-multiselect/src/angular-dropdownMultiselect.js"></script> -->
+        <script src="app.js"></script>
+    </body>
+</html>
