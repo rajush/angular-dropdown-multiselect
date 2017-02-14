@@ -3,10 +3,12 @@ var  browserSync = require( 'browser-sync' );
 var concat       = require("gulp-concat");
 var clean        = require("gulp-clean");
 var uglify       = require("gulp-uglify");
+var cleanCSS     = require("gulp-clean-css");
 var rename       = require("gulp-rename");
 var size         = require("gulp-size");
 
 var paths = {
+    css: ["src/assets/*.css"],
     js: ["src/assets/*.js"],
     dest: "dist/"
 };
@@ -33,17 +35,27 @@ gulp.task("clean", function(){
         .pipe(clean());
 });
 
+// File size
 gulp.task("size", function(){
     return gulp.src(paths.js)
         .pipe(size({showFiles: true}));
 });
 
 // Concatenate & Minify JS
-gulp.task("scripts", ["clean", "size"], function(){
+gulp.task("scripts", ["size"], function(){
     return gulp.src(paths.js)
         .pipe(concat("angular-dropdown-multiselect.js"))
         .pipe(rename({suffix: ".min"}))
         .pipe(uglify())
+        .pipe(size({showFiles: true}))
+        .pipe(gulp.dest(paths.dest));
+});
+
+// Minify CSS
+gulp.task("styles", ["size"], function(){
+    return gulp.src(paths.css)
+        .pipe(cleanCSS({debug: true}))
+        .pipe(rename({suffix: ".min"}))
         .pipe(size({showFiles: true}))
         .pipe(gulp.dest(paths.dest));
 });
@@ -53,4 +65,4 @@ gulp.task("watch", function(){
     gulp.watch("src/js/*.js", ["scripts"]);
 });
 
-gulp.task("default", ["browser-sync", "scripts", "watch"]);
+gulp.task("default", ["browser-sync", "clean", "scripts", "styles", "watch"]);
