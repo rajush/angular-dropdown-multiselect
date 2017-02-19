@@ -64,7 +64,7 @@ gulp.task("styles", ["size"], function(){
 
 // Watch
 gulp.task("watch", function(){
-    gulp.watch("src/js/*.js", ["scripts"]);
+    gulp.watch("src/**/*.js", ["scripts"]);
 });
 
 gulp.task("default", ["browser-sync", "clean", "scripts", "styles", "watch"]);

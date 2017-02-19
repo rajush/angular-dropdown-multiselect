@@ -7,19 +7,29 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- <link rel="stylesheet" href="assets/angular-dropdownMultiselect.css"> -->
         <link rel="stylesheet" href="dist/angular-dropdownMultiselect.min.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body ng-controller="AppController">
-        <h1>App started</h1>
 
-        <dropdown-multiselect
-            dropdown-config="config"
-            model="selectedItems"
-            ng-click="selected(selectedItems)">
-        </dropdown-multiselect>
+        <main>
+            <h5>Dropdown Multiselect</h5>
 
-        <pre class="pre-scroll">
-            Selected = {{selectedItems | json}}
-        </pre>
+            <section class="flexcontainer">
+                <div class="flex-left">
+                    <dropdown-multiselect
+                        dropdown-config="config"
+                        model="selectedItems"
+                        ng-click="selected(selectedItems)">
+                    </dropdown-multiselect>
+                </div>
+
+                <div class="flex-right">
+                    <pre>
+                        Selected = {{selectedItems | json}}
+                    </pre>
+                </div>
+            </section>
+        </main>
 
         <script src="node_modules/angular/angular.min.js"></script>
         <!-- <script src="assets/angular-dropdownMultiselect.js"></script> -->
