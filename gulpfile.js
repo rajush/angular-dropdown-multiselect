@@ -18,7 +18,8 @@ gulp.task("browser-sync", function(){
         server: {
             baseDir: "./src",
             routes: {
-                "/node_modules": "node_modules"
+                "/node_modules": "node_modules",
+                "/dist": "dist"
             }
         },
         port: 8080,
@@ -31,7 +32,7 @@ gulp.task("browser-sync", function(){
 
 // Clean before re-build
 gulp.task("clean", function(){
-    return gulp.src("dist", {read: false})
+    return gulp.src(paths.dest, {read: false})
         .pipe(clean());
 });
 
@@ -44,7 +45,7 @@ gulp.task("size", function(){
 // Concatenate & Minify JS
 gulp.task("scripts", ["size"], function(){
     return gulp.src(paths.js)
-        .pipe(concat("angular-dropdown-multiselect.js"))
+        .pipe(concat("angular-dropdownMultiselect.js"))
         .pipe(rename({suffix: ".min"}))
         .pipe(uglify())
         .pipe(size({showFiles: true}))
@@ -54,6 +55,7 @@ gulp.task("scripts", ["size"], function(){
 // Minify CSS
 gulp.task("styles", ["size"], function(){
     return gulp.src(paths.css)
+        .pipe(concat("angular-dropdownMultiselect.css"))
         .pipe(cleanCSS({debug: true}))
         .pipe(rename({suffix: ".min"}))
         .pipe(size({showFiles: true}))

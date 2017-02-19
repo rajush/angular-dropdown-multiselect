@@ -59,7 +59,7 @@
                     dropdownOptions: '=dropdownOptions', // object for repeater
                     notifyParent: '&dropdownSelected' // notifier
                 },
-                controller: function ( $scope ) {
+                controller: [ "$scope", function ( $scope ) {
                     var model = [],
                         badgeVisibility = true, // default badge visibility
                         multiSelect = true, // default multiSelect is "ON"
@@ -345,7 +345,7 @@
                         return null;
                     }
 
-                },
+                }],
                 link: function ( scope, element, attr, ctrl ) {
                     var openDropdown = false;
 
