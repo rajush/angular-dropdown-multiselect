@@ -26,6 +26,7 @@ section.flexcontainer {
 }
 
 .flex-right {
+    height: 100%; /* Safari fix */
     flex: 1 0 0;
     padding: 0 10px;
 }
