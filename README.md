@@ -9,8 +9,8 @@ AngularJS, Bootstrap
 
 Include both <code>.css</code> and <code>.js</code> files in <code>index.html</code>.
 ```html
-<link rel="stylesheet" href="angular-dropdownMultiselect.css">
-<script src="angular-dropdownMultiselect.js"></script>
+<link rel="stylesheet" href="angular-dropdownMultiselect.min.css">
+<script src="angular-dropdownMultiselect.min.js"></script>
 ```
 
 Inject <code>dropdown-multiselect</code> as your angular app dependencies.
@@ -169,7 +169,7 @@ HTML:
 ```html
 <dropdown-multiselect dropdown-config="config" ></dropdown-multiselect>
 ```
-#Tested with
+#Compatible with
 
 ![Alt text](https://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/32/chrome.png "Chrome")
 ![Alt text](https://cdn1.iconfinder.com/data/icons/humano2/32x32/apps/firefox-icon.png "Firefox")
