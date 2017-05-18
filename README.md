@@ -1,7 +1,8 @@
 # angular-dropdown-multiselect
 Angular JS directive for dropdown with multi-select feature.
 
-<a href="https://plnkr.co/edit/KpVqaiblOKGk5K6VWmi4?p=preview">Example</a>
+<h3>Demo</h3>
+<a href="https://plnkr.co/edit/KpVqaiblOKGk5K6VWmi4?p=preview">https://plnkr.co/edit/KpVqaiblOKGk5K6VWmi4?p=preview</a>
 
 <h3>Dependencies</h3>
 
