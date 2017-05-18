@@ -1,11 +1,11 @@
 # angular-dropdown-multiselect
 Angular JS directive for dropdown with multi-select feature.
 
-#Dependencies
+<h3>Dependencies</h3>
 
 AngularJS, Bootstrap
 
-#Usage
+<h3>Usage</h3>
 
 Include both <code>.css</code> and <code>.js</code> files in <code>index.html</code>.
 ```html
@@ -18,7 +18,7 @@ Inject <code>dropdown-multiselect</code> as your angular app dependencies.
 angular.module( 'App', [ 'dropdown-multiselect' ] );
 ```
 
-#Features
+<h3>Features</h3>
 
 <p>Use as an <em>element</em></p>
 
@@ -32,6 +32,7 @@ angular.module( 'App', [ 'dropdown-multiselect' ] );
 ```
 
 Provide custom name to the dropdown
+
 ```html
   <dropdown-multiselect>My Custom Name</dropdown-multiselect>
 ```
@@ -39,8 +40,9 @@ If no text is provided, it will default to text as <code>Select</code>.
 
 <h3>Settings through attribute:</h3>
 
-<h4>dropdown-options</h4>
+<h4>i. dropdown-options</h4>
 <p>Provide data to be displayed as dropdown list items through <code>dropdown-options="options"</code> attribute. It can accept the object in a format of:</p>
+
 ```javascript
 $scope.options = [ {
         'Id': 1,
@@ -54,14 +56,16 @@ $scope.options = [ {
     }];
 ```
 <p>HTML:</p>
+
 ```html
 <dropdown-multiselect dropdown-options="options"></dropdown-multiselect>
 ```
 
-<h4>dropdown-trackby</h4>
+<h4>ii. dropdown-trackby</h4>
 <p>Initially, dropdown items are tracked by <code>Id</code> automagically (considering "Id" property is present in all objects in an array), if the <code>dropdown-trackby</code> attribute is not set.</p>
 <p>If the option objects does not have <code>Id</code> property, then custom tracking could be set by providing any of the property of an object from the options data.</p>
 Controller:
+
 ```javascript
 var options = [ {
         'Name': 'Batman',
@@ -75,14 +79,16 @@ var options = [ {
     }];
 ```
 <p>HTML:</p>
+
 ```html
 <dropdown-multiselect dropdown-options="options" dropdown-trackby="Name"></dropdown-multiselect>
 ```
 <p><em>NOTE: </em> It is always better to provide <code>dropdown-trackby</code> attribute for correct tracking, when <code>dropdown-options</code> is being used.</p>
 
-<h4>dropdown-disable</h4>
+<h4>iii. dropdown-disable</h4>
 <p>Dropdown could be disabled by directly providing boolean value to <code>dropdown-disable</code> attribute.</p>
 HTML:
+
 ```html
 <dropdown-multiselect dropdown-options="options" dropdown-disable="true"></dropdown-multiselect>
 ```
@@ -92,14 +98,16 @@ HTML:
 $scope.dropdownDisable = true;
 ```
 and then in HTML:
+
 ```html
 <dropdown-multiselect dropdown-options="options" dropdown-disable="dropdownDisable"></dropdown-multiselect>
 ```
 
-<h4>model</h4>
+<h4>iv. model</h4>
 The <code>model</code> attribute gives the accessibility to the selected data from the dropdown which will be available to the view and the controller.
 
 HTML:
+
 ```html
     <!--Binding to the view-->
     <dropdown-multiselect dropdown-options="options" dropdown-trackby="Id" model="selectedItems"></dropdown-multiselect>
@@ -108,6 +116,7 @@ HTML:
 ```
 
 Controller:
+
 ```javascript
     //Binding to the controller
     var mySelectedValues = $scope.selectedItems;
@@ -139,6 +148,7 @@ Configure the options from the controller to set <code>dropdown-config</code> at
 <h6>multiSelect:</h6> <p>Turn multi-select list items "on" or "off". Default is <code>true</code>, but could be turned "off" by setting <code>false</code>.</p>
 
 Controller:
+
 ```javascript
 var options = [ {
         'Id': 1,
@@ -168,6 +178,7 @@ $scope.config = {
 ```
 
 HTML:
+
 ```html
 <dropdown-multiselect dropdown-config="config" ></dropdown-multiselect>
 ```
