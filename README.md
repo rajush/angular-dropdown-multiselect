@@ -21,10 +21,12 @@ angular.module( 'App', [ 'dropdown-multiselect' ] );
 #Features
 
 <p>Use as an <em>element</em></p>
+
 ```html
   <dropdown-multiselect></dropdown-multiselect>
 ```
 <p>or as an <em>attribute</em></p>
+
 ```html
     <div dropdown-multiselect ></div>
 ```
