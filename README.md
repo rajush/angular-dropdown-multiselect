@@ -170,6 +170,11 @@ Controller:
     };
 ```
 
+HTML:
+
+```html
+    <dropdown-multiselect dropdown-config="config" ></dropdown-multiselect>
+```
 <h6>options:</h6> <p>Data to be displayed in dropdown list. This should be an array of objects.</p>
 <h6>trackBy:</h6> <p>Any property name from the option object that should be used for tracking the selected item.</p>
 <h6>displayBy:</h6><p>An array that takes two values which will be used as data to be displayed in dropdown list, in a respective order. If it is not set, then it will automagically set the first two prooperty names as the values to be displayed.</p>
@@ -210,13 +215,7 @@ Controller:
     };
 ```
 
-HTML:
-
-```html
-    <dropdown-multiselect dropdown-config="config" ></dropdown-multiselect>
-```
-
-#Compatible with
+Compatible with
 
 ![Alt text](https://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/32/chrome.png "Chrome")
 ![Alt text](https://cdn1.iconfinder.com/data/icons/humano2/32x32/apps/firefox-icon.png "Firefox")
