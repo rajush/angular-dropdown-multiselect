@@ -140,6 +140,36 @@ Configure the options from the controller to set <code>dropdown-config</code> at
     filter
 </pre>
 
+Controller:
+
+```javascript
+    var options = [ {
+            'Id': 1,
+            'Name': 'Batman',
+            'Costume': 'Black'
+        }, {
+            'Id': 2,
+            'Name': 'Superman',
+            'Costume': 'Red & Blue'
+        }, {
+            'Id': 3,
+            'Name': 'Hulk',
+            'Costume': 'Green'
+        }];
+
+    $scope.config = {
+        options: options,
+        trackBy: 'Id',
+        displayBy: [ 'Name', 'Costume' ],
+        divider: ':',
+        icon: 'glyphicon glyphicon-heart',
+        displayBadge: true,
+        height: '200px',
+        filter: true,
+        multiSelect: false
+    };
+```
+
 <h6>options:</h6> <p>Data to be displayed in dropdown list. This should be an array of objects.</p>
 <h6>trackBy:</h6> <p>Any property name from the option object that should be used for tracking the selected item.</p>
 <h6>displayBy:</h6><p>An array that takes two values which will be used as data to be displayed in dropdown list, in a respective order. If it is not set, then it will automagically set the first two prooperty names as the values to be displayed.</p>
