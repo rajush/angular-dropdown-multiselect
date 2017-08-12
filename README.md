@@ -185,6 +185,7 @@ HTML:
 ```html
     <dropdown-multiselect dropdown-config="config" ></dropdown-multiselect>
 ```
+
 #Compatible with
 
 ![Alt text](https://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/32/chrome.png "Chrome")
