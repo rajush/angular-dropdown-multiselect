@@ -153,37 +153,37 @@ Configure the options from the controller to set <code>dropdown-config</code> at
 Controller:
 
 ```javascript
-var options = [ {
-        'Id': 1,
-        'Name': 'Batman',
-        'Costume': 'Black'
-    }, {
-        'Id': 2,
-        'Name': 'Superman',
-        'Costume': 'Red & Blue'
-    }, {
-        'Id': 3,
-        'Name': 'Hulk',
-        'Costume': 'Green'
-    }];
+    var options = [ {
+            'Id': 1,
+            'Name': 'Batman',
+            'Costume': 'Black'
+        }, {
+            'Id': 2,
+            'Name': 'Superman',
+            'Costume': 'Red & Blue'
+        }, {
+            'Id': 3,
+            'Name': 'Hulk',
+            'Costume': 'Green'
+        }];
 
-$scope.config = {
-    options: options,
-    trackBy: 'Id',
-    displayBy: [ 'Name', 'Costume' ],
-    divider: ':',
-    icon: 'glyphicon glyphicon-heart',
-    displayBadge: true,
-    height: '200px',
-    filter: true,
-    multiSelect: false
-};
+    $scope.config = {
+        options: options,
+        trackBy: 'Id',
+        displayBy: [ 'Name', 'Costume' ],
+        divider: ':',
+        icon: 'glyphicon glyphicon-heart',
+        displayBadge: true,
+        height: '200px',
+        filter: true,
+        multiSelect: false
+    };
 ```
 
 HTML:
 
 ```html
-<dropdown-multiselect dropdown-config="config" ></dropdown-multiselect>
+    <dropdown-multiselect dropdown-config="config" ></dropdown-multiselect>
 ```
 #Compatible with
 
