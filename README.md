@@ -185,35 +185,6 @@ HTML:
 <h6>filter:</h6> <p>Filter/search items from the dropdown list. Default visibility is <code>false</code>, but could be set to <code>true</code>.</p>
 <h6>multiSelect:</h6> <p>Turn multi-select list items "on" or "off". Default is <code>true</code>, but could be turned "off" by setting <code>false</code>.</p>
 
-Controller:
-
-```javascript
-    var options = [ {
-            'Id': 1,
-            'Name': 'Batman',
-            'Costume': 'Black'
-        }, {
-            'Id': 2,
-            'Name': 'Superman',
-            'Costume': 'Red & Blue'
-        }, {
-            'Id': 3,
-            'Name': 'Hulk',
-            'Costume': 'Green'
-        }];
-
-    $scope.config = {
-        options: options,
-        trackBy: 'Id',
-        displayBy: [ 'Name', 'Costume' ],
-        divider: ':',
-        icon: 'glyphicon glyphicon-heart',
-        displayBadge: true,
-        height: '200px',
-        filter: true,
-        multiSelect: false
-    };
-```
 
 Compatible with
 
