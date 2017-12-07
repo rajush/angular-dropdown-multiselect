@@ -191,3 +191,6 @@ Compatible with
 ![Alt text](https://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/32/chrome.png "Chrome")
 ![Alt text](https://cdn1.iconfinder.com/data/icons/humano2/32x32/apps/firefox-icon.png "Firefox")
 ![Alt text](https://cdn1.iconfinder.com/data/icons/fatcow/32x32/safari_browser.png "Safari")
+
+# License
+MIT
