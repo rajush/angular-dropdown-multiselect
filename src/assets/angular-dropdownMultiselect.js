@@ -43,7 +43,8 @@
                     '<ul class="dropdown-scrollable" ng-class="{\'dropdown-height\': defaultHeight, \'hasfilter\': isFilterVisible === true}">' +
                     '<li ng-repeat="option in options | filter: option">' +
                     '<a ng-click="setSelectedItem()">' +
-                    '<span class="pull-right" ng-class="isChecked(option[trackByKey], dropdownType)"></span> {{option[leftKey]}} {{divider}} {{option[rightKey]}}' +
+                    '<span class="pull-left option-selected-icon" ng-class="isChecked(option[trackByKey], dropdownType)"></span>' + 
+                    '<span class="option-content">{{option[leftKey]}} {{divider}} {{option[rightKey]}}</span>' +
                     '</a>' +
                     '</li>' +
                     '</ul>' +
