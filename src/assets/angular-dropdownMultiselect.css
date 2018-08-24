@@ -36,6 +36,7 @@
     margin-top: 65px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+    position: relative;
 }
 .hasfilter {
     margin-top: 100px;
@@ -52,6 +53,14 @@
     color: #333;
     white-space: nowrap;
     text-decoration: none;
+    height: 25px;
+}
+.dropdown-menu .dropdown-scrollable > li > a > .option-content {
+    position: absolute;
+    left: 40px;
+}
+.dropdown-menu .dropdown-scrollable > li > a > .option-selected-icon {
+    margin-left: 3px;
 }
 .dropdown-menu li a:hover {
     color: #333;

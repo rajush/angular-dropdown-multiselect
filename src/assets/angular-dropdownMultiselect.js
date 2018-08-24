@@ -43,7 +43,8 @@
                     '<ul class="dropdown-scrollable" ng-class="{\'dropdown-height\': defaultHeight, \'hasfilter\': isFilterVisible === true}">' +
                     '<li ng-repeat="option in options | filter: option">' +
                     '<a ng-click="setSelectedItem()">' +
-                    '<span class="pull-right" ng-class="isChecked(option[trackByKey], dropdownType)"></span> {{option[leftKey]}} {{divider}} {{option[rightKey]}}' +
+                    '<span class="pull-left option-selected-icon" ng-class="isChecked(option[trackByKey], dropdownType)"></span>' + 
+                    '<span class="option-content">{{option[leftKey]}} {{divider}} {{option[rightKey]}}</span>' +
                     '</a>' +
                     '</li>' +
                     '</ul>' +
@@ -369,7 +370,7 @@
                                 inside;
 
                             while ( eventSrc !== dropdownMultiselect ) {
-                                var dropdownMenuList = angular.element( document.querySelector( '.dropdown-menu' ) );
+                                var dropdownMenuList = angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) );
 
                                 eventSrc = eventSrc[ 'offsetParent' ];
                                 inside = true;
@@ -382,27 +383,27 @@
                             }
 
                             if ( eventSrc === null ) {
-                                angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
-                                angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'none' );
+                                angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).removeClass( 'dropdown-show' );
+                                angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).css( 'display', 'none' );
                                 return false;
                             }
 
                             if ( eventSrc === null || ( eventSrc === dropdownMultiselect && !inside ) ) {
-                                var dropdownMenuBtn = angular.element( document.querySelector( '.dropdown-menu' ) );
+                                var dropdownMenuBtn = angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) );
 
                                 if ( openDropdown === true ) {
-                                    angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
-                                    angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'none' );
+                                    angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).removeClass( 'dropdown-show' );
+                                    angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).css( 'display', 'none' );
                                 } else {
-                                    angular.element( document.querySelector( '.dropdown-menu' ) ).addClass( 'dropdown-show' );
-                                    angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'block' );
+                                    angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).addClass( 'dropdown-show' );
+                                    angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).css( 'display', 'block' );
                                 }
                                 openDropdown = !openDropdown;
                                 //console.log( "after", openDropdown );
                             }
                         } else {
-                            angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
-                            angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'none' );
+                            angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).removeClass( 'dropdown-show' );
+                            angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).css( 'display', 'none' );
                         }
                     } );
 
@@ -417,7 +418,7 @@
                                 inside;
 
                             while ( eventSrc !== dropdownMultiselect ) {
-                                var dropdownMenuList = angular.element( document.querySelector( '.dropdown-menu' ) );
+                                var dropdownMenuList = angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) );
 
                                 eventSrc = eventSrc[ 'offsetParent' ];
                                 inside = true;
@@ -431,27 +432,27 @@
 
 
                             if ( eventSrc === null ) {
-                                angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
-                                angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'none' );
+                                angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).removeClass( 'dropdown-show' );
+                                angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).css( 'display', 'none' );
                                 return false;
                             }
 
                             if ( eventSrc === null || ( eventSrc === dropdownMultiselect && !inside ) ) {
-                                var dropdownMenuBtn = angular.element( document.querySelector( '.dropdown-menu' ) );
+                                var dropdownMenuBtn = angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) );
 
                                 console.log( dropdownMenuBtn );
-                                if ( angular.element( document.querySelector( '.dropdown-menu' ) )[ 0 ].classList[ 1 ] === 'dropdown-show' ) {
-                                    angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
-                                    angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'none' );
+                                if ( angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) )[ 0 ].classList[ 1 ] === 'dropdown-show' ) {
+                                    angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).removeClass( 'dropdown-show' );
+                                    angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).css( 'display', 'none' );
                                 } else {
-                                    angular.element( document.querySelector( '.dropdown-menu' ) ).addClass( 'dropdown-show' );
-                                    angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'block' );
+                                    angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).addClass( 'dropdown-show' );
+                                    angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).css( 'display', 'block' );
                                 }
 
                             }
                         } else {
-                            angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
-                            angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'none' );
+                            angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).removeClass( 'dropdown-show' );
+                            angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).css( 'display', 'none' );
                         }
                     }
 
@@ -466,7 +467,7 @@
                                 inside;
 
                             while ( eventSrc !== dropdownMultiselect ) {
-                                var dropdownMenuList = angular.element( document.querySelector( '.dropdown-menu' ) );
+                                var dropdownMenuList = angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) );
 
                                 eventSrc = eventSrc[ 'offsetParent' ];
                                 inside = true;
@@ -479,15 +480,15 @@
                             }
 
                             if ( angular.isDefined( inside ) && !inside ) {
-                                angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
-                                angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'none' );
+                                angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).removeClass( 'dropdown-show' );
+                                angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).css( 'display', 'none' );
                                 openDropdown = false; //closing the state of dropdown
                                 return openDropdown;
                             }
 
                         } else {
-                            angular.element( document.querySelector( '.dropdown-menu' ) ).removeClass( 'dropdown-show' );
-                            angular.element( document.querySelector( '.dropdown-menu' ) ).css( 'display', 'none' );
+                            angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).removeClass( 'dropdown-show' );
+                            angular.element( document.querySelector( '#dropdownMultiselect .dropdown-menu' ) ).css( 'display', 'none' );
                         }
 
                     }
