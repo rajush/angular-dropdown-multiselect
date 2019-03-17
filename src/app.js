@@ -1,9 +1,9 @@
-(function(){
+(function () {
 
     "use strict";
 
     angular.module("myApp", ["dropdown-multiselect"])
-        .controller("AppController", ["$scope", function($scope){
+        .controller("AppController", ["$scope", function ($scope) {
 
             console.log("controller started");
 
@@ -19,10 +19,13 @@
                 $scope.options.push(obj);
             }
 
+            // pre-select the second option
+            $scope.options[1].selected = true;
+
             $scope.config = {
                 options: $scope.options,
                 trackBy: 'StoreId',
-                displayBy: [ 'StoreId', 'StoreDesc' ],
+                displayBy: ['StoreId', 'StoreDesc'],
                 divider: ':',
                 icon: 'glyphicon glyphicon-heart',
                 // icon: 'fa fa-check-square-o',
@@ -30,7 +33,8 @@
                 filter: true,
                 height: '200px',
                 multiSelect: true,
-                // preSelectAll: true
+                preSelectItem: true,
+                preSelectAll: false // 'preSelectAll' property will overwrite 'preSelectItem' property
             };
 
         }]);
