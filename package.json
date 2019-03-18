@@ -22,14 +22,11 @@
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "gulp": "^3.9.1",
-    "gulp-angular-templatecache": "^2.2.6",
     "gulp-clean": "^0.3.2",
     "gulp-clean-css": "^3.0.2",
     "gulp-concat": "^2.6.1",
-    "gulp-htmlmin": "^5.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-size": "^2.1.0",
-    "gulp-uglify": "^2.0.1",
-    "run-sequence": "^2.2.1"
+    "gulp-uglify": "^2.0.1"
   }
 }

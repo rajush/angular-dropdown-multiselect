@@ -15,7 +15,42 @@
                 restrict: 'AE',
                 replace: true,
                 transclude: true,
-                templateUrl: 'assets/dropdown.html',
+                template: '<div class="dropdown" id="dropdownMultiselect">' +
+                    '<button class="btn btn-default dropdown-toggle" ng-class="{\'disabled\':disabled}" type="button" id="dropdownMenu">' +
+                    '<span class="pull-left" ng-if="!hasText">Select </span>' +
+                    '<span class="pull-left" ng-transclude></span>' +
+                    '<div class="pull-right">' +
+                    '<span class="badge" ng-if="isBadgeVisible"> {{model.length}}</span>' +
+                    '<span class="caret"></span>' +
+                    '</div>' +
+                    '</button>' +
+                    '<ul class="dropdown-menu">' +
+                    '<li>' +
+                    '<div>' +
+                    '<ul class="dropdown-static">' +
+                    '<li ng-if="multiSelect"><a ng-click="selectAll()"><i class="glyphicon glyphicon-ok"></i> Select All</a></li>' +
+                    '<li ng-if="multiSelect"><a ng-click="unSelectAll()"><i class="glyphicon glyphicon-remove"></i> Unselect All</a></li>' +
+                    '<div class="filter-parent" id="search" ng-if="isFilterVisible">' +
+                    '<label for="filter-by"><i class="glyphicon glyphicon-search"></i></label>' +
+                    '<div>' +
+                    '<input placeholder="Search" id="filter-by" class="form-control" tabindex="1" ng-model="$parent.option">' +
+                    '</div>' +
+                    '</div>' +
+                    '</ul>' +
+                    '</div>' +
+                    '</li>' +
+                    '<li>' +
+                    '<ul class="dropdown-scrollable" ng-class="{\'dropdown-height\': defaultHeight, \'hasfilter\': isFilterVisible === true}">' +
+                    '<li ng-repeat="option in options | filter: option">' +
+                    '<a ng-click="setSelectedItem()">' +
+                    '<span class="pull-left option-selected-icon" ng-class="isChecked(option[trackByKey], dropdownType)"></span>' +
+                    '<span class="option-content">{{option[leftKey]}} {{divider}} {{option[rightKey]}}</span>' +
+                    '</a>' +
+                    '</li>' +
+                    '</ul>' +
+                    '</li>' +
+                    '</ul>' +
+                    '</div>',
                 scope: {
                     config: '=dropdownConfig', // configuration from controller
                     primaryKey: '@dropdownTrackby', // main key from the option's object, to select or unselect the item
