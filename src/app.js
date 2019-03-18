@@ -34,7 +34,7 @@
                 height: '200px',
                 multiSelect: true,
                 preSelectItem: true,
-                preSelectAll: false // 'preSelectAll' property will overwrite 'preSelectItem' property
+                // preSelectAll: true // 'preSelectAll' property will overwrite 'preSelectItem' property
             };
 
         }]);

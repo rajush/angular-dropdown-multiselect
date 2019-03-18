@@ -126,18 +126,24 @@ Controller:
 ```
 
 <h3>Set through config in Controller:</h3>
+
 Configure the options from the controller to set <code>dropdown-config</code> attribute.
+
 <p><em>NOTE: </em> When <code>dropdown-config</code> is being used, it will overwrite <code>dropdown-options</code> and <code>dropdown-trackby</code> attribute, if in use. Therefore, it's better to use just one at a time.</p>
+
 <p>Available <code>config</code> options:
 <pre>
     options,
     trackBy,
-    displayBy,  
+    displayBy,
     divider,
     icon,
     displayBadge,
     height,
-    filter
+    filter,
+    multiSelect,
+    preSelectItem,
+    preSelectAll
 </pre>
 
 Controller:
@@ -166,7 +172,9 @@ $scope.config = {
     displayBadge: true,
     height: '200px',
     filter: true,
-    multiSelect: false
+    multiSelect: false,
+    preSelectItem: true,
+    preSelectAll: false
 };
 ```
 
@@ -175,15 +183,87 @@ HTML:
 ```html
    <dropdown-multiselect dropdown-config="config" ></dropdown-multiselect>
 ```
-<h6>options:</h6> <p>Data to be displayed in dropdown list. This should be an array of objects.</p>
-<h6>trackBy:</h6> <p>Any property name from the option object that should be used for tracking the selected item.</p>
-<h6>displayBy:</h6><p>An array that takes two values which will be used as data to be displayed in dropdown list, in a respective order. If it is not set, then it will automagically set the first two prooperty names as the values to be displayed.</p>
-<h6>divider:</h6> <p>A custom divider sign setter <code>-, : , =, # ,......</code> between the dropdown list columns. Default is <code>-</code>.</p>
-<h6>icon:</h6> <p>A custom icon setter for the selected items. Works with Font-Awesome too. Default is Bootstrap's glyphicons checkmark.</p>
-<h6>displayBadge:</h6> <p>Badge on the dropdown button that displays the total number of selected items from the dropdown list. Default visibility is <code>true</code>, but could be set to <code>false</code>.</p>
-<h6>height:</h6> <p>Height of the scrollable item list in a dropdown-box, in pixel. Default height is set to <code>200px</code>.</p>
-<h6>filter:</h6> <p>Filter/search items from the dropdown list. Default visibility is <code>false</code>, but could be set to <code>true</code>.</p>
-<h6>multiSelect:</h6> <p>Turn multi-select list items "on" or "off". Default is <code>true</code>, but could be turned "off" by setting <code>false</code>.</p>
+<h4>options:</h4>
+<p>Data to be displayed in dropdown list. This should be an array of objects.</p>
+
+<h4>trackBy:</h4>
+<p>Any property name from the option object that should be used for tracking the selected item.</p>
+
+<h4>displayBy:</h4>
+<p>An array that takes two values which will be used as data to be displayed in dropdown list, in a respective order. If it is not set, then it will automagically set the first two prooperty names as the values to be displayed.</p>
+
+<h4>divider:</h4>
+<p>A custom divider sign setter <code>-, : , =, # ,......</code> between the dropdown list columns. Default is <code>-</code>.</p>
+
+<h4>icon:</h4>
+<p>A custom icon setter for the selected items. Works with Font-Awesome too. Default is Bootstrap's glyphicons checkmark.</p>
+
+<h4>displayBadge:</h4>
+<p>Badge on the dropdown button that displays the total number of selected items from the dropdown list. Default visibility is <code>true</code>, but could be set to <code>false</code>.</p>
+
+<h4>height:</h4>
+<p>Height of the scrollable item list in a dropdown-box, in pixel. Default height is set to <code>200px</code>.</p>
+
+<h4>filter:</h4>
+<p>Filter/search items from the dropdown list. Default visibility is <code>false</code>, but could be set to <code>true</code>.</p>
+
+<h4>multiSelect:</h4>
+<p>Turn multi-select list items "on" or "off". Default is <code>true</code>, but could be turned "off" by setting <code>false</code>.</p>
+
+<h4>preSelectItem:</h4>
+<p>Allow pre-selecting of selected list items on load. Just add in <code>preSelectItem: true</code> config option property, alonng with passing <code>selected: true</code> property to the object that needs to be pre-selected while setting up the config options.</p>
+
+```javascript
+var options = [ {
+        'Id': 1,
+        'Name': 'Batman',
+        'Costume': 'Black',
+        'selected': true // this will pre-select this option
+    }, {
+        'Id': 2,
+        'Name': 'Superman',
+        'Costume': 'Red & Blue'
+    }, {
+        'Id': 3,
+        'Name': 'Hulk',
+        'Costume': 'Green'
+    }];
+
+$scope.config = {
+    options: options,
+    trackBy: 'Id',
+    displayBy: [ 'Name', 'Costume' ],
+    divider: ':',
+    icon: 'glyphicon glyphicon-heart',
+    displayBadge: true,
+    height: '200px',
+    filter: true,
+    multiSelect: true, // ('multiSelect' also has to be set to 'true')
+    preSelectItem: true, // allowing pre-select (this has to be set to 'true')
+};
+
+```
+
+<h4>preSelectAll:</h4>
+<p>Turn pre-selecting of all list items "on" or "off" on load. Default is <code>false</code>, but could be turned "on" by setting <code>true</code>.
+NOTE: For pre-select-all to work, <code>multiSelect</code> option must be set to <code>true</code>.
+</p>
+
+```javascript
+$scope.config = {
+    options: options,
+    trackBy: 'Id',
+    displayBy: [ 'Name', 'Costume' ],
+    divider: ':',
+    icon: 'glyphicon glyphicon-heart',
+    displayBadge: true,
+    height: '200px',
+    filter: true,
+    multiSelect: true, // ('multiSelect' also has to be set to 'true')
+    preSelectAll: true // allowing pre-select-all
+};
+
+```
 
 
 Compatible with
